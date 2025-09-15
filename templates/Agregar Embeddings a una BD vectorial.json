@@ -1,0 +1,123 @@
+{
+  "name": "Agregar Embeddings a una BD vectorial",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "db0159a0-344e-4edf-8338-deb853e286be",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "43c98bf2-b285-490e-88e2-7667888d13e3",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Css6CkuSpxdk6gZ0",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        208
+      ],
+      "id": "2bb20fbf-e690-46e4-9545-3f188ce58d8a",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "tEKavyLzaPZYMV79",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "Data Engineer vs Data Scientist: dos roles clave en el mundo de los datos\n\nEn la era del Big Data y la inteligencia artificial, las organizaciones basan sus decisiones estratégicas en datos masivos y complejos. Sin embargo, para que esos datos se transformen en información útil, intervienen distintos perfiles. Dos de los más importantes son el Data Engineer (Ingeniero de Datos) y el Data Scientist (Científico de Datos).\nAunque trabajan estrechamente, su enfoque, sus habilidades y las herramientas que utilizan son diferentes.\n\n1. Qué hace un Data Engineer\n\nEl Data Engineer es el profesional encargado de diseñar, construir y mantener la infraestructura de datos. Su misión es que la información fluya de manera segura, confiable, escalable y accesible para los analistas, científicos de datos y otros sistemas.\n\nSus principales responsabilidades son:\n\nDiseño de arquitecturas de datos: creación de pipelines que extraen, transforman y cargan datos (ETL/ELT) desde múltiples fuentes (bases de datos, APIs, sensores, logs, etc.).\n\nIntegración y almacenamiento: definición de data lakes, data warehouses y bases de datos optimizadas.\n\nOptimización del rendimiento: asegurar que los procesos sean rápidos, eficientes y tolerantes a fallos.\n\nGobernanza y calidad de datos: establecer estándares de limpieza, validación, seguridad y cumplimiento legal.\n\nEn resumen, construye las autopistas de datos por las que circulará la información.\n\n2. Qué hace un Data Scientist\n\nEl Data Scientist se centra en analizar los datos y generar conocimiento accionable. Su labor consiste en descubrir patrones, predecir tendencias y ofrecer recomendaciones que impacten en el negocio.\n\nEntre sus tareas principales están:\n\nExploración y limpieza de datos (data wrangling).\n\nAnálisis estadístico y matemático para entender relaciones y variabilidad.\n\nModelado predictivo y machine learning: crear modelos de regresión, clasificación, clustering, series temporales o redes neuronales.\n\nVisualización y comunicación de resultados: presentar hallazgos de forma clara a los equipos de negocio y directivos.\n\nExperimentación: diseño de tests A/B y evaluación de hipótesis.\n\nPodemos decir que el científico de datos extrae oro de las minas de datos construidas por el ingeniero.\n\n3. Herramientas principales\nAspecto\tData Engineer\tData Scientist\nLenguajes\tPython, Java, Scala, SQL\tPython, R, Julia, SQL\nProcesamiento de datos\tApache Spark, Apache Flink, Kafka, Hadoop\tPandas, NumPy, Dask, Spark (para análisis)\nBases de datos\tPostgreSQL, MySQL, MongoDB, Cassandra, Snowflake, BigQuery\tPuede usarlas, pero más para consultas que para arquitectura\nETL / Orquestación\tAirflow, dbt, Luigi, Prefect\tA veces Airflow para automatizar experimentos\nInfraestructura y nube\tAWS (Glue, EMR, S3), Azure Data Factory, GCP (Dataflow, BigQuery)\tAWS SageMaker, GCP Vertex AI, Azure ML para modelado\nMachine Learning\t– (rara vez)\tScikit-learn, TensorFlow, PyTorch, XGBoost\nVisualización\t–\tMatplotlib, Seaborn, Plotly, Tableau, Power BI\n4. Objetivos y mentalidad\n\nData Engineer\n\nPiensa en escalabilidad, estabilidad y rendimiento.\n\nSe preocupa por la arquitectura, los flujos de datos y la eficiencia.\n\nSu trabajo es invisible para el usuario final, pero indispensable.\n\nData Scientist\n\nSe enfoca en insights, predicciones y toma de decisiones.\n\nLe interesan las correlaciones, los modelos y la comunicación de resultados.\n\nSu impacto es más visible: modelos de recomendación, detección de fraudes, predicciones de demanda, etc.\n\n5. Complementariedad en un flujo de trabajo real\n\nImaginemos una empresa de e-commerce:\n\nData Engineer\n\nConstruye un pipeline que recoge datos de compras, clics en la web, inventario y redes sociales.\n\nAlmacena esa información en un data lake en la nube.\n\nCrea tablas limpias y optimizadas en un data warehouse.\n\nData Scientist\n\nAccede a las tablas ya depuradas.\n\nDesarrolla un modelo de recomendación de productos basado en machine learning.\n\nEntrega predicciones y visualizaciones a marketing y ventas.\n\nEl primero garantiza la calidad y disponibilidad de los datos; el segundo extrae valor de ellos.\n\n6. Otras diferencias clave\nPunto\tData Engineer\tData Scientist\nPerfil académico\tIngeniería en sistemas, informática, telecomunicaciones\tEstadística, matemáticas, física, economía, informática\nÉnfasis\tBackend de datos\tAnálisis y modelos\nInteracción con negocio\tMenor (más con equipos técnicos)\tAlta (con marketing, finanzas, operaciones)\nIndicadores de éxito\tVelocidad de procesamiento, integridad, disponibilidad\tPrecisión de modelos, ROI de las predicciones\n7. Convergencias y evolución de roles\n\nAunque las fronteras son claras, hay áreas de superposición:\n\nUn Data Scientist necesita manejar SQL, pipelines básicos y nociones de ingeniería.\n\nUn Data Engineer a menudo hace análisis exploratorio para validar los flujos de datos.\n\nEn organizaciones más pequeñas, ambos roles pueden incluso fusionarse en un Data Analyst avanzado o un “Full-Stack Data Scientist”.\n\nAdemás, están surgiendo perfiles intermedios como:\n\nMachine Learning Engineer: se centra en poner en producción modelos creados por Data Scientists.\n\nAnalytics Engineer: combina orquestación de datos con análisis avanzado.\n\n8. Conclusión\n\nEl Data Engineer y el Data Scientist son dos pilares complementarios en el ecosistema de datos:\n\nEl ingeniero garantiza la infraestructura: recolección, almacenamiento y calidad.\n\nEl científico transforma datos en valor de negocio mediante análisis, estadística y machine learning.\n\nAmbos requieren dominio técnico, mentalidad de resolución de problemas y colaboración constante.\nEn un mundo cada vez más impulsado por los datos, la sinergia entre estos dos roles es esencial para convertir la información en decisiones estratégicas.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        352,
+        208
+      ],
+      "id": "8ab4e12d-681b-4d10-ab68-9f77002875e8",
+      "name": "Default Data Loader"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6acb59c3-e648-456c-a720-5748c6fee52e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "db912482996738dbd084479c29f7f3a09434c7da6ad540077b17a237b22fac4a"
+  },
+  "id": "eFlLCET5PcvwRHxr",
+  "tags": []
+}
